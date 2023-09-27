@@ -42,7 +42,7 @@ class Snake:
         #self.parent_screen.fill((BACKGROUND_COLOR))
         for i in range(self.length): 
             self.parent_screen.blit(self.block, (self.x[i], self.y[i])) 
-        pygame.display.flip() 
+        #pygame.display.flip() 
 
     def walk(self):
 
@@ -89,6 +89,7 @@ class Game:
         self.play_background_music()
         self.surface = pygame.display.set_mode((1000, 800))
         self.surface.fill((110, 110, 5))
+       
         self.snake = Snake(self.surface, 1)
         self.snake.draw()
         self.apple = Apple(self.surface)
@@ -116,6 +117,8 @@ class Game:
         self.display_score()
         pygame.display.flip()
 
+        
+
 
         # snake coliding with apples 
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
@@ -139,6 +142,8 @@ class Game:
             raise "Hit the boundry error"
 
 
+
+
     def display_score(self):
         font = pygame.font.SysFont('arial' ,30)
         score = font.render(f"Score: {self.snake.length}", True, (255, 255, 255))
@@ -152,6 +157,7 @@ class Game:
         line2 = font.render("To play again press Enter. To exit press Escape!", True, (255, 255, 255))
         self.surface.blit(line2, (200, 350))
         
+
         pygame.display.flip()
         
         pygame.mixer.music.pause()
@@ -159,7 +165,8 @@ class Game:
     def reset(self):
         self.snake = Snake(self.surface, 1)
         self.apple = Apple(self.surface)
-        
+        pygame.mixer.music.unpause()
+
 
 
 
